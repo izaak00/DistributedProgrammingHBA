@@ -2,39 +2,31 @@
 using Google.Cloud.Firestore;
 using System.Net;
 using Customer.Models;
+using Customer.DataAccess;
 
 namespace Customer.Controllers
 {
     public class UserController : ControllerBase
     {
-        private readonly FirestoreDb _db;
-        private const string CollectionName = "users";
+        FireStoreUsersRepository fur;
 
-        public UserController()
+        public UserController(FireStoreUsersRepository _fur)
         {
-            // Initialize Firestore database connection
-            // Replace "your-project-id" with your actual Firestore project ID
-            string projectId = "your-project-id";
-            FirestoreDbBuilder builder = new FirestoreDbBuilder
-            {
-                ProjectId = projectId
-            };
-            _db = builder.Build();
+             fur = _fur;
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(Login l)
+        public async Task<IActionResult> Login([FromBody] Login l)
         {
             try
             {
-                DocumentReference docRef = _db.Collection(CollectionName).Document(l.Email);
-                DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+                QuerySnapshot snapshot = await fur.Login(l);
 
-                if (snapshot.Exists && snapshot.GetValue<string>("password") == l.Password)
+                if (snapshot.Documents.Count > 0 && snapshot.Documents[0].GetValue<string>("Password") == l.Password)
                 {
+                    // Successful login
                     return Ok();
                 }
-                else
                 {
                     return NotFound();
                 }
@@ -47,31 +39,18 @@ namespace Customer.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(Register r)
+        public async Task<IActionResult> Register([FromBody] Register r)
         {
             try
             {
-                CollectionReference usersCollection = _db.Collection("users");
-                Query searchExistingUser = usersCollection.WhereEqualTo("Email", r.Email);
-                QuerySnapshot searchSnapshot = await searchExistingUser.GetSnapshotAsync();
+                QuerySnapshot searchSnapshot = await fur.CheckIfUserExists(r);
 
                 if (searchSnapshot.Count > 0)
                 {
                     return Conflict();
                 }
 
-                DocumentReference docRef = usersCollection.Document(); // Assuming you have a document ID generation strategy
-
-                Dictionary<string, object> data = new Dictionary<string, object>
-                {
-                    { "Name", r.Name },
-                    { "Surname", r.Surname },
-                    { "Email", r.Email },
-                    { "Password", r.Password },
-                };
-
-                await docRef.SetAsync(data);
-
+                await fur.Register(r);
                 return Ok();
             }
             catch

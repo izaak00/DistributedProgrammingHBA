@@ -1,18 +1,26 @@
 ﻿using ECommerce.Models;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Net;
+using System.Text;
+using System.Security.Claims;
+using Microsoft.Extensions.Logging;
 
 namespace ECommerce.Controllers
 {
     public class UserController : Controller
     {
         private readonly HttpClient _httpClient;
-        private const string ApiUrl = "https://your-api-url.com/users";
+        private readonly ILogger<UserController> Logger;
 
-        public UserController()
+        private const string ApiUrl = "https://localhost:7166";
+
+        public UserController(ILogger<UserController> logger)
         {
             _httpClient = new HttpClient();
+            Logger = logger;
         }
 
         [HttpGet]
@@ -21,18 +29,43 @@ namespace ECommerce.Controllers
             return View();
         }
 
+        [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
         [HttpPost] 
         public async Task<IActionResult> Login(Login l)
         {
             var requestUrl = $"{ApiUrl}/login";
-            var requestData = new { Email = l.Email, Password = l.Password };
 
-            HttpResponseMessage response = await _httpClient.PostAsJsonAsync(requestUrl, requestData);
+            // Serialize the Login object to JSON
+            var requestData = JsonConvert.SerializeObject(l);
+
+            // Create the HTTP request content with JSON data
+            var content = new StringContent(requestData, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await _httpClient.PostAsync(requestUrl, content);
 
             if (response.IsSuccessStatusCode)
             {
                 // User is logged in successfully
                 // You can store the authentication token or perform other actions here
+
+                // Remove the login and register cookies
+
+                // Create the claims for the authenticated user
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, l.Email),
+                    // Add additional claims as needed
+                };
+                // Create the ClaimsIdentity
+                var userIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var userPrincipal = new ClaimsPrincipal(userIdentity);
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal, new AuthenticationProperties
+                {
+                    IsPersistent = true
+                });
+
+
                 return RedirectToAction("Index", "Home");
             }
             else if (response.StatusCode == HttpStatusCode.NotFound)
@@ -49,6 +82,17 @@ namespace ECommerce.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            // Perform the logout process
+
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -59,9 +103,14 @@ namespace ECommerce.Controllers
         public async Task<IActionResult> Register(Register r)
         {
             var requestUrl = $"{ApiUrl}/register";
-            var requestData = new { ID = r.Id, Name = r.Name, Surname = r.Surname, Email = r.Email, Password = r.Password };
 
-            HttpResponseMessage response = await _httpClient.PostAsJsonAsync(requestUrl, requestData);
+            // Serialize the Login object to JSON
+            var requestData = JsonConvert.SerializeObject(r);
+
+            // Create the HTTP request content with JSON data
+            var content = new StringContent(requestData, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await _httpClient.PostAsync(requestUrl, content);
 
             if (response.IsSuccessStatusCode)
             {

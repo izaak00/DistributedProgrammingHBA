@@ -1,4 +1,5 @@
 using ECommerce.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using static Google.Cloud.Firestore.V1.StructuredQuery.Types;
@@ -15,6 +16,20 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddControllers();
+
+// Add cookie authentication
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/User/Login";
+        options.LogoutPath = "/User/Logout";
+
+        // Set the expiration time for the authentication cookie
+        options.ExpireTimeSpan = TimeSpan.FromDays(7); // Example: 7 days
+    });
+
+// Add HttpContextAccessor
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -35,13 +50,13 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
 });
-
-app.UseAuthentication();
-app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
