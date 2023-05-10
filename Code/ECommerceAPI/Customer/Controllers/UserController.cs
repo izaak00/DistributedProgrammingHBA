@@ -59,5 +59,17 @@ namespace Customer.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }
+
+        [HttpGet("userdetails/{email}")]
+        public async Task<ActionResult<UserDetails>> GetUserDetails(string email)
+        {
+            UserDetails userDetails = await fur.GetUserDetails(email);
+
+            if (userDetails == null)
+            {
+                return NotFound(); // Return a 404 Not Found response
+            }
+            return userDetails;
+        }
     }
 }

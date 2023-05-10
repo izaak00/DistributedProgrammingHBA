@@ -1,0 +1,37 @@
+﻿@model List<ECommerce.Models.Product>
+
+@{
+    ViewData["Title"] = "GetProductDetails";
+}
+
+<h1>GetProductDetails</h1>
+
+<h1>Product Search</h1>
+
+<form method="post" action="@Url.Action("GetProductDetails", "ProductCatalogue")">
+    <input type="text" name="productName" placeholder="Enter product name" />
+    <button type="submit">Search</button>
+</form>
+
+@if (Model != null && Model.Count > 0)
+{
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="@product.thumbnail" class="card-img-top" alt="Product Thumbnail">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.name</h5>
+                        <p class="card-text">Price: @product.price</p>
+                        <p class="card-text">Condition: @product.condition</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No products found.</p>
+}

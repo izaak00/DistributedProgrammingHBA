@@ -7,6 +7,7 @@ using System.Net;
 using System.Text;
 using System.Security.Claims;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ECommerce.Controllers
 {
@@ -14,7 +15,6 @@ namespace ECommerce.Controllers
     {
         private readonly HttpClient _httpClient;
         private readonly ILogger<UserController> Logger;
-
         private const string ApiUrl = "https://localhost:7166";
 
         public UserController(ILogger<UserController> logger)
@@ -58,13 +58,13 @@ namespace ECommerce.Controllers
                 };
                 // Create the ClaimsIdentity
                 var userIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
                 var userPrincipal = new ClaimsPrincipal(userIdentity);
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal, new AuthenticationProperties
                 {
                     IsPersistent = true
                 });
-
 
                 return RedirectToAction("Index", "Home");
             }
@@ -124,6 +124,25 @@ namespace ECommerce.Controllers
             }
 
             return View();
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> GetUserDetails()
+        {
+            string email = User.Identity.Name;
+            var requestUrl = $"{ApiUrl}/userdetails/{email}";
+
+            // Make a GET request to the API to retrieve user details
+            HttpResponseMessage response = await _httpClient.GetAsync(requestUrl);
+
+            if (response.IsSuccessStatusCode)
+            {
+                UserDetails userDetails = await response.Content.ReadFromJsonAsync<UserDetails>();
+                return View(userDetails);
+            }
+
+            return View("Error");
         }
     }
 }
