@@ -1,0 +1,13 @@
+payment
+
+Card number
+card type
+Order ID
+
+Order:
+
+Product name
+Order ID
+Owner Email/Name
+
+View a list of order for example and get information from the 3 apis including order, payment, and shipping.

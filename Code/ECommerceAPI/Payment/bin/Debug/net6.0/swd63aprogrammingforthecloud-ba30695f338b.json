@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "swd63aprogrammingforthecloud",
+  "private_key_id": "ba30695f338b068127cba286d83deb4c6c969f6b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCtoan0ghzvpu3B\nBXyQ7cCEoRWNoM2AF+eKifdv8+AKktpVOoiZCit2Qmq2NCSdweeKnmaDO25IOJXd\nIzwkeRpNZhU/IuIOQIEKPjIGcAcLmTBSTXrR05zTDTW+lzP/2/JVULwUfJYeBzB7\nyGxEMy6NtRKarg72ckeLPd+CwUV8VoB/0tr0OPTymdJ8ZOA3lKf6sfwfm0e25veB\ng3x03RMWwGiIeUMvTG+e5bRCAonHALCDEPbSEWd0fsjNdydCGMCZhwL3iozM0iM0\nH3+b4RTS6UGjvuX9LFQgSLjx3DkrIpDzfCalXJYv9Cxm4K3GqPyXim0h7FiXw/gR\n2ZSo1dytAgMBAAECggEAAP4AASAvNyVejXBRFmjtZTSgcWc+VWGNlqqUKeUcXiMZ\nsUv81NcMiYf2oSTqIqalgpLGJjDUQABmxtU5NkIk5tVTAMHbxdYThrH1SjkgqS3O\na2H69jD93+ze5kBp8SfaGie0c2+E0hYbblGmYLtkJDYpLY4aEslzZDXNzar6ESxQ\n9SzK+ljEasluCs+QgPtYV1xe+PrL9crJyMTQ09BkeN4Am9CiBZuKSFZ9SjqyNjM2\nBFNhgiCxNRfd/wgkS2zVQCwU/1SE61rNHtME3fWe+VHuPHzRXS/SfcFw3MPMKF+x\n7SZZWnsoXTdW0iJzNrgcWN7v7V1/cnxrnJDWdt0bdwKBgQDcsFAwJheorVGRGbXG\nAVRSr3iZAd7yuU8WRQjP7rwb1u73WF1lPL5umGEqrEVySdEhaF5+iSotFdinGUym\n6p1ziAEWhMJiadF0dGRhqsj3swLxqF4plhpxvI/HfKS1ShM1PdTZX2yGS3vxtJTj\noZdj3ynWcaQ2xkRpl0fsIOaRgwKBgQDJadPoktU9iWciHkDUzA7lC9kd1cagdxm1\nG0HfBR++rTVC1FgiJBJZ+VgEer8uzTedF7Df10rNJNXrxSlAuSVkTnnYV8TrPfBL\nM9gJynrvtPwl/3E+R396FzVGFLkbLLIvuZEVVf6F5Vsm5AMXnX+bd5W0N650ital\nY1ypE61yDwKBgG/s495nk1wy+slSdsRDbFa7M7i2IDKOFTRAMuXyOGkOKwg7QrLT\nielhUvZnhJkgIvaEjlgyjLds+wJUbHHDT7OGaLbZAhUTge1EEp0OFvq5SWbycz84\nJ5VDgtAzwP1I4lEAWPEd2laJ9gRyB4kjLTqzte5SmGxHRe8fkJSLYyStAoGAJtJX\nHgTvRSUu08yxAlMyq8NU3gNOfa93LQlL8QizzbTlBzSWqD37q4v8AyEFqKe1iHoA\nhaShrljjQsaF5QvKwUK/CYwhUJZnspcTlQ+KEpn33/sUgMSXNZkzk4Z7B1neHoTO\nCibBIF3M6/oW/n5FElpCaLIy1hPMu6QjQBOi4tECgYBtiMH7bOtRbOLoIp/zZ+Nq\nZJZU0dEfpMLAslyLiPwr5lJenfH3NkT/5lc1Tl853d0cvojYCqwbEISnkWlCCR6s\nGUw+K+N/zZOjaIrjKfFXSXSzHOKOg5I6RkevWywh927ZdUPdBwEcS2T9mrK8TbO4\nWz0o3/z15yYl1Q2u3sZ/Zw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "movieuploaderhba@swd63aprogrammingforthecloud.iam.gserviceaccount.com",
+  "client_id": "108019164746910453246",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/movieuploaderhba%40swd63aprogrammingforthecloud.iam.gserviceaccount.com"
+}

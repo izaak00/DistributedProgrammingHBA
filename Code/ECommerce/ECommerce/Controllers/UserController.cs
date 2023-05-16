@@ -29,7 +29,7 @@ namespace ECommerce.Controllers
             return View();
         }
 
-        [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
+        //[ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
         [HttpPost] 
         public async Task<IActionResult> Login(Login l)
         {

@@ -1,6 +1,7 @@
 ﻿using ECommerce.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ECommerce.Controllers;
 using static Humanizer.On;
 using System.Net.Http;
 using Newtonsoft.Json;
@@ -23,18 +24,18 @@ namespace ECommerce.Controllers
         [HttpPost]
         public async Task<IActionResult> OrderDetails(string productName, string productPrice)
         {
-            Order o = new Order()
+            Order order = new Order()
             {
                 ProductName = productName,
                 Price = productPrice,
                 OrderId = Guid.NewGuid().ToString(),
                 Owner = User.Identity.Name
             };
-        
+
             var requestUrl = $"{ApiUrl}/order";
 
             // Serialize the Login object to JSON
-            var requestData = JsonConvert.SerializeObject(o);
+            var requestData = JsonConvert.SerializeObject(order);
 
             // Create the HTTP request content with JSON data
             var content = new StringContent(requestData, Encoding.UTF8, "application/json");
@@ -44,11 +45,12 @@ namespace ECommerce.Controllers
 
             // here you should redirect user to the payment page 
 
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    List<Product> productDetails = await response.Content.ReadFromJsonAsync<List<Product>>();
-            //    return View(productDetails);
-            //}
+            TempData["VariableName"] = order.OrderId;
+
+            if (order != null)
+            {
+                return RedirectToAction("PaymentProcedure", "Payment");
+            }
 
             return View("Error");
         }
