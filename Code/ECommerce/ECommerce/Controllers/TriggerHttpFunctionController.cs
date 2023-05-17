@@ -26,15 +26,9 @@ namespace ECommerce.Controllers
                 // Remove the object from TempData
                 TempData.Remove("PaymentDetails");
                 TempData.Remove("Order");
+ 
 
-                // Create an object to be passed to the Cloud Function
-
-
-                // Convert the object to JSON
-                //var paymentDetailsJson = Newtonsoft.Json.JsonConvert.SerializeObject(paymentDetails);
-                //var orderJson = Newtonsoft.Json.JsonConvert.SerializeObject(order);
-
-                var request = new HttpRequestMessage(HttpMethod.Post, "https://your-cloud-function-endpoint")
+                var request = new HttpRequestMessage(HttpMethod.Post, "http://127.0.0.1:8080")
                 {
                     Content = new StringContent(paymentDetailsJson, Encoding.UTF8, "application/json")
                 };
@@ -48,16 +42,12 @@ namespace ECommerce.Controllers
                 // Handle the response as needed
                 if (response.IsSuccessStatusCode)
                 {
-                    // Cloud Function execution succeeded
-                    // ...
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    // Cloud Function execution failed
-                    // ...
+                    return RedirectToAction("Error", "Home");
                 }
-
-                return Ok();
             }
             catch (Exception ex)
             {

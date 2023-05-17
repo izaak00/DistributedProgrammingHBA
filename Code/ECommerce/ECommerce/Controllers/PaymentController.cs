@@ -31,12 +31,16 @@ namespace ECommerce.Controllers
         [HttpPost]
         public async Task<IActionResult> PaymentProcedure(PaymentDetails p)
         {
-            string orderJson = TempData["MyObject"] as string;
+            string getOrderJson = TempData["MyObject"] as string;
+            Order o = JsonConvert.DeserializeObject<Order>(getOrderJson);
+
+            p.OrderId = o.OrderId;
 
             // Remove the object from TempData
             TempData.Remove("MyObject");
 
-            // Serialize the Order object to JSON
+            // Serialize the Order and Payment object to JSON
+            string orderJson = JsonConvert.SerializeObject(o);
             string paymentJson = JsonConvert.SerializeObject(p);
             // Store the objects in TempData
             TempData["PaymentDetails"] = paymentJson;
@@ -48,22 +52,6 @@ namespace ECommerce.Controllers
             }
 
             return View("Error");
-
-            //var requestUrl = $"{ApiUrl}/payment";
-
-            //// Serialize the Login object to JSON
-            //var requestData = JsonConvert.SerializeObject(p);
-
-            //// Create the HTTP request content with JSON data
-            //var content = new StringContent(requestData, Encoding.UTF8, "application/json");
-
-            //HttpResponseMessage response = await _httpClient.PostAsync(requestUrl, content);
-
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
-            //return View("Error");
         }
 
     }
