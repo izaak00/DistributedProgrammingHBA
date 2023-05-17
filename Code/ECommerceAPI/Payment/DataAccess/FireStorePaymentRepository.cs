@@ -21,7 +21,8 @@ namespace Payment.DataAccess
                     { "OrderId", p.OrderId }, 
                     { "CardType", p.CardType },
                     { "Currency", p.Currency },
-                    {"CardNumber", p.CardNumber }
+                    {"CardNumber", p.CardNumber },
+                    {"Address", p.Address }
                 };
             await paymentCollection.AddAsync(data);
         }

@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "dgSpecHash": "KTpPgRAjVfJFHQB5TvDyjoCCqmYkJT/Hyamd+ut1IMrhAyKib+bjjsxjRqlKNEJ9hbkKV4tRJLTxSNWJQV2zkg==",
+  "success": true,
+  "projectFilePath": "D:\\School\\Repositories\\DistributedProgrammingHBA\\Code\\HttpFunction\\HttpFunction.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\izaak\\.nuget\\packages\\cloudnative.cloudevents\\2.5.1\\cloudnative.cloudevents.2.5.1.nupkg.sha512",
+    "C:\\Users\\izaak\\.nuget\\packages\\cloudnative.cloudevents.aspnetcore\\2.5.1\\cloudnative.cloudevents.aspnetcore.2.5.1.nupkg.sha512",
+    "C:\\Users\\izaak\\.nuget\\packages\\cloudnative.cloudevents.systemtextjson\\2.5.0\\cloudnative.cloudevents.systemtextjson.2.5.0.nupkg.sha512",
+    "C:\\Users\\izaak\\.nuget\\packages\\google.cloud.functions.framework\\2.0.0\\google.cloud.functions.framework.2.0.0.nupkg.sha512",
+    "C:\\Users\\izaak\\.nuget\\packages\\google.cloud.functions.hosting\\2.0.0\\google.cloud.functions.hosting.2.0.0.nupkg.sha512",
+    "C:\\Users\\izaak\\.nuget\\packages\\microsoft.aspnetcore.http\\2.1.34\\microsoft.aspnetcore.http.2.1.34.nupkg.sha512",
+    "C:\\Users\\izaak\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.1.1\\microsoft.aspnetcore.http.abstractions.2.1.1.nupkg.sha512",
+    "C:\\Users\\izaak\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.1.1\\microsoft.aspnetcore.http.features.2.1.1.nupkg.sha512",
+    "C:\\Users\\izaak\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\2.1.1\\microsoft.aspnetcore.webutilities.2.1.1.nupkg.sha512",
+    "C:\\Users\\izaak\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.1.1\\microsoft.extensions.dependencyinjection.abstractions.2.1.1.nupkg.sha512",
+    "C:\\Users\\izaak\\.nuget\\packages\\microsoft.extensions.objectpool\\2.1.1\\microsoft.extensions.objectpool.2.1.1.nupkg.sha512",
+    "C:\\Users\\izaak\\.nuget\\packages\\microsoft.extensions.options\\2.1.1\\microsoft.extensions.options.2.1.1.nupkg.sha512",
+    "C:\\Users\\izaak\\.nuget\\packages\\microsoft.extensions.primitives\\2.1.1\\microsoft.extensions.primitives.2.1.1.nupkg.sha512",
+    "C:\\Users\\izaak\\.nuget\\packages\\microsoft.net.http.headers\\2.1.1\\microsoft.net.http.headers.2.1.1.nupkg.sha512",
+    "C:\\Users\\izaak\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
+    "C:\\Users\\izaak\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
+    "C:\\Users\\izaak\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\izaak\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
+    "C:\\Users\\izaak\\.nuget\\packages\\system.text.json\\5.0.2\\system.text.json.5.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
