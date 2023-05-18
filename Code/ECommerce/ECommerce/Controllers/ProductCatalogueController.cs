@@ -10,7 +10,7 @@ namespace ECommerce.Controllers
     public class ProductCatalogueController : Controller
     {
         private readonly HttpClient _httpClient;
-        private const string ApiUrl = "https://localhost:7074";
+        private const string ApiUrl = "https://productcatalogueapiimage-j7lgba4epq-uc.a.run.app";
 
         public ProductCatalogueController()
         {

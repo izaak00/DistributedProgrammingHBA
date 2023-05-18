@@ -21,5 +21,18 @@ namespace Order.Controllers
             await fsor.AddOrder(o);
             return Ok();
         }
+
+        [HttpGet("orderpaymentshipping/{email}")]
+
+        public async Task<ActionResult<List<OrderPaymentShipping>>> GetOrderDetails(string email)
+        {
+            List<OrderPaymentShipping> orderPaymentShippingList = await fsor.GetOrderDetails(email);
+
+            if (orderPaymentShippingList == null || orderPaymentShippingList.Count == 0)
+            {
+                return NotFound(); // Return a 404 Not Found response
+            }
+            return orderPaymentShippingList;
+        }
     }
 }

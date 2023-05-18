@@ -8,7 +8,7 @@ namespace ECommerce.Controllers
     public class TriggerHttpFunctionController : Controller
     {
         private readonly HttpClient _httpClient;
-        private const string HttpFunctionUrl = "https://localhost:7114";
+        private const string HttpFunctionUrl = "https://us-central1-swd63aprogrammingforthecloud.cloudfunctions.net/http-function-distributedhba";
 
 
         public TriggerHttpFunctionController()
@@ -28,7 +28,7 @@ namespace ECommerce.Controllers
                 TempData.Remove("Order");
  
 
-                var request = new HttpRequestMessage(HttpMethod.Post, "http://127.0.0.1:8080")
+                var request = new HttpRequestMessage(HttpMethod.Post, HttpFunctionUrl)
                 {
                     Content = new StringContent(paymentDetailsJson, Encoding.UTF8, "application/json")
                 };

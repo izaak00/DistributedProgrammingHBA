@@ -15,7 +15,7 @@ namespace ECommerce.Controllers
     {
         private readonly HttpClient _httpClient;
         private readonly ILogger<UserController> Logger;
-        private const string ApiUrl = "https://localhost:7166";
+        private const string ApiUrl = "https://customerapiimage-j7lgba4epq-uc.a.run.app";
 
         public UserController(ILogger<UserController> logger)
         {
@@ -48,7 +48,6 @@ namespace ECommerce.Controllers
                 // User is logged in successfully
                 // You can store the authentication token or perform other actions here
 
-                // Remove the login and register cookies
 
                 // Create the claims for the authenticated user
                 var claims = new List<Claim>
